@@ -1,5 +1,3 @@
-const waveplus = require('node-airthings-waveplus');
-
 let Service;
 let Characteristic;
 
@@ -19,6 +17,10 @@ class AirthingsWaveplus {
     this.serialNumber = config.serialNumber;
     this.config = config;
     this.updatedAt = 0;
+
+    const WavePlus = require('airthings-waveplus/waveplus.js');
+    const adapter = require(config.adapter) || require('airthings-waveplus/adapter.js');
+    const wavePlus = new WavePlus(adapter);
 
     WavePlus.on('found', wavePlus => {
       devices[wavePlus.id] = wavePlus;
@@ -46,7 +48,7 @@ class AirthingsWaveplus {
       wavePlus.on('updated', (data) => {
         this.update(wavePlus, data);
       });
-    }
+    };
 
     if (wavePlus) {
       listenTo(wavePlus);
@@ -100,7 +102,7 @@ class AirthingsWaveplus {
     if (this.humidityService) {
       services.push(this.humidityService);
     }
-    
+
     return services;
   }
 }
