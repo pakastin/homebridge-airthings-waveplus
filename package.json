@@ -28,5 +28,8 @@
   "bugs": {
     "url": "https://github.com/iler/homebridge-airthings-waveplus/issues"
   },
-  "homepage": "https://github.com/iler/homebridge-airthings-waveplus#readme"
+  "homepage": "https://github.com/iler/homebridge-airthings-waveplus#readme",
+  "dependencies": {
+    "airthings-waveplus": "^0.4.1"
+  }
 }
